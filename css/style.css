@@ -944,6 +944,12 @@ footer {
         gap: 1.5rem;
         justify-content: center;
     }
+    .support-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .support-container-item p{
+        text-align: center;
+    }
 
     .review-container {
         grid-template-columns: repeat(1, 1fr);
