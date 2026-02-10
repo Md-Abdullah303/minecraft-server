@@ -26,7 +26,7 @@
                     </ul>
                 </div>
                 <div class="nav-contain2">
-                    <div class="eur-usd">
+                    <div class="eur-usd navbtnoff">
                         <div class="eur">
                             <p>EUR</p>
                         </div>
@@ -35,7 +35,29 @@
                         </div>
                     </div>
                     <button class="navBtn">Login</button>
-                    <div class="btn">Check Prices</div>
+                    <div class="btn navbtnoff"><a href="#choose">Check Prices</a></div>
+                    <div onclick=onSidebar() class="menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </div>
+                <div onclick=offSidebar() class="sidevar">
+                    <div class="chorse">
+                        <i class="fa-solid fa-x"></i>
+                    </div>
+                    <div class="eur-usd ">
+                        <div class="eur">
+                            <p>EUR</p>
+                        </div>
+                        <div class="usd">
+                            <p>USD</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li><a href="#">Learn <i class="fa-solid fa-play"></i></a></li>
+                        <li><a href="#">Contact <i class="fa-solid fa-play"></i></a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                    <div class="btn"><a href="#choose">Check Prices</a></div>
                 </div>
             </nav>
         </div>
@@ -523,5 +545,14 @@
         <p id="copy-right">&copy; 2026 Ultra Servers Pte.Ltd. All Rights Reserved <a href="#">Terms of Service</a></p>
     </footer>
 </body>
-
+<script>
+    function offSidebar(){
+        const sidebar = document.querySelector(".sidevar");
+        sidebar.style.display = "none";
+    }
+    function onSidebar(){
+        const sidebar = document.querySelector(".sidevar");
+        sidebar.style.display = "flex";
+    }
+</script>
 </html>
