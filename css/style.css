@@ -169,7 +169,7 @@ nav {
     right: 0;
     top: 0;
     background-color: #142220;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -267,7 +267,9 @@ nav {
 .hero-section-box-item i {
     color: #14b89f;
 }
-
+.menu{
+    display: none;
+}
 .btn-grp {
     display: flex;
     gap: 20px;
@@ -941,6 +943,9 @@ footer {
     .nav-contain1 ul,
     .navbtnoff {
         display: none;
+    }
+    .menu{
+        display: flex;
     }
 
     .plan-container,
