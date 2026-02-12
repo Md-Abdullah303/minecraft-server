@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Bornomala</title>
+    <link rel="shortcut icon" href="./img/fabikon-img.png" type="image/x-icon">
+    <title>BORNO CLOUD</title>
     <link rel="stylesheet" href="./css/style.css">
 
     <!-- tailwind css  -->
@@ -40,41 +41,66 @@
         <nav id="navbar" class=" fixed z-50 w-full  ">
             <div class="w-[75%] flex items-center justify-between mx-auto h-25  ">
                 <!-- nav logo -->
-                <div class="w-45 ">
-                    <a href="#"><img class="w-full" src="./img/header-logo.png" alt=""></a>
-                </div>
+                <div class="flex items-center gap-10">
+                    <div class="w-45 ">
+                        <a href="#"><img class="w-full" src="./img/header-logo.png" alt=""></a>
+                    </div>
 
-                <ul class=" flex items-center gap-2.5 text-[#FFFFFF]">
-                    <li class="py-5 px-6 font-semibold"><a href="#">Minecraft Hosting</a></li>
-                    <li onclick="toggleOption(event)"
-                        class="py-5 px-6 font-semibold flex items-center gap-2 cursor-pointer relative">
-                        <a href="#">Game Servers</a>
-                        <i class="fa-solid fa-play text-[8px] rotate-90 "></i>
-                        <div id="game-severs" class="hidden bg-[#031531] rounded-[7px] space-y-10 -bottom-40 right-0">
-                            <ul class="w-full">
-                                <li class=" hover:bg-[#041e47] w-full py-4 px-5 rounded-t-[7px]"><a href="#">Nothing</a>
-                                </li>
-                                <li class=" hover:bg-[#041e47] w-full py-4 px-5 "><a href="#">Nothing</a></li>
-                                <li class=" hover:bg-[#041e47] w-full py-4 px-5 rounded-b-[7px]"><a href="#">Nothing</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li onclick="toggleOption2(event)"
-                        class="py-5 px-6 font-semibold flex items-center gap-2 cursor-pointer relative">
-                        <a href="#">Company</a>
-                        <i class="fa-solid fa-play text-[8px] rotate-90 "></i>
-                        <div id="Company" class="hidden bg-[#031531] rounded-[7px] space-y-10 -bottom-40 right-0">
-                            <ul class="w-full">
-                                <li class=" hover:bg-[#041e47] w-full py-4 px-5 rounded-t-[7px]"><a href="#">Nothing</a>
-                                </li>
-                                <li class=" hover:bg-[#041e47] w-full py-4 px-5 "><a href="#">Nothing</a></li>
-                                <li class=" hover:bg-[#041e47] w-full py-4 px-5 rounded-b-[7px]"><a href="#">Nothing</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+                    <ul class=" flex items-center gap-2.5 text-[#FFFFFF]">
+                        <li class="py-5 px-6 font-semibold"><a href="#">Minecraft Hosting</a></li>
+                        <li onclick="toggleOption(event)"
+                            class="py-5 px-6 font-semibold flex items-center gap-2 cursor-pointer relative">
+                            <a href="#">Game Servers</a>
+                            <i class="fa-solid fa-play text-[8px] rotate-90 "></i>
+                            <div id="game-severs" class="hidden bg-[#031531] rounded-[7px] space-y-10 top-16 right-0">
+                                <ul class="w-full">
+                                    <li
+                                        class=" hover:bg-[#041e47] w-full py-4 px-5 rounded-t-[7px] flex items-center gap-1.5">
+                                        <div class="w-[25px]">
+                                            <img class="w-full" src="./img/fivem.png" alt="">
+                                        </div>
+                                        <a href="#">FiveM</a>
+                                    </li>
+                                    <li class=" hover:bg-[#041e47] w-full py-4 px-5  flex items-center gap-1.5">
+                                        <div class="w-[25px]">
+                                            <img class="w-full" src="./img/gta2.png" alt="">
+                                        </div>
+                                        <a href="#">SAMP</a>
+                                    </li>
+                                    <li class=" hover:bg-[#041e47] w-full py-4 px-5  flex items-center gap-1.5">
+                                        <div class="w-[25px]">
+                                            <img class="w-full" src="./img/discord.png" alt="">
+                                        </div>
+                                        <a href="#">Discord Bot</a>
+                                    </li>
+                                    <li
+                                        class=" hover:bg-[#041e47] w-full py-4 px-5 rounded-b-[7px] flex items-center gap-1.5">
+                                        <div class="w-[20px]">
+                                            <img class="w-full" src="./img/palworld.png" alt="">
+                                        </div>
+                                        <a href="#">Palworld</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li onclick="toggleOption2(event)"
+                            class="py-5 px-6 font-semibold flex items-center gap-2 cursor-pointer relative">
+                            <a href="#">More</a>
+                            <i class="fa-solid fa-play text-[8px] rotate-90 "></i>
+                            <div id="Company" class="hidden bg-[#031531] rounded-[7px] space-y-10 -bottom-40 right-0">
+                                <ul class="w-full">
+                                    <li class=" hover:bg-[#041e47] w-full py-4 px-5 rounded-t-[7px]"><a
+                                            href="#">Nothing</a>
+                                    </li>
+                                    <li class=" hover:bg-[#041e47] w-full py-4 px-5 "><a href="#">Nothing</a></li>
+                                    <li class=" hover:bg-[#041e47] w-full py-4 px-5 rounded-b-[7px]"><a
+                                            href="#">Nothing</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
                 <!-- btn grp -->
                 <div class="flex items-center gap-4">
@@ -82,7 +108,7 @@
                         class="text-[16px] text-[#FFFFFF] hover:bg-[#051e47] font-semibold cursor-pointer py-3 px-2 rounded-[6px]">CLIENT
                         AREA</button>
                     <button
-                        class="text-[16px] bg-gradient-to-tr from-[#FF6D1F] hover:from-[#ff752b] hover:to-[#474747] vai-[#FF9D00] to-[#FFCF71] text-[#FFFFFF] font-semibold cursor-pointer py-3 px-2 rounded-[6px]">CONTROL
+                        class="text-[16px] bg-gradient-to-tr from-cyan-800 hover:from-cyan-900 to-cyan-400   hover:to-cyan-600 cursor-pointer to-cyan-400  text-[#FFFFFF] font-semibold py-3 px-2 rounded-md">CONTROL
                         PANEL</button>
                 </div>
             </div>
@@ -91,13 +117,69 @@
 
 
         <!-- banner section  -->
-        <section>
-            
+        <section class="h-screen z-40 relative flex items-center">
+            <div class="w-[75%] mx-auto text-[#FFFFFF] flex items-center justify-between">
+                <!-- this section text  -->
+                <div class="w-[50%] space-y-10">
+                    <h1 class="text-7xl font-extrabold">Minecraft Server Hosting & More</h1>
+                    <p class="text-[#777777] text-[20pxba]">Host your Minecraft, Terraria, or Factorio server with
+                        powerful AMD Ryzen 9 processors and DDoS
+                        protection. Enjoy unmetered players and instant setup starting from just €6/month.</p>
+                    <div class="flex items-center gap-4">
+                        <button
+                            class="text-[16px] bg-[#109682] hover:bg-[#11a892] text-[#FFFFFF] font-semibold cursor-pointer py-2.5 px-2 rounded-sm">Start
+                            Your Server Now <i class="fa-solid fa-angle-left rotate-180 text-[14px]"></i></button>
+
+
+                        <button
+                            class="text-[16px] text-[#777777] hover:bg-[#58006ecb] font-semibold cursor-pointer py-[8px] px-2 rounded-sm border border-[#777777]"><a
+                                href="https://discord.gg/GUtP6d5Wfz" target="_blank">Join Us On Discord</a> <i
+                                class="fa-solid fa-angle-left rotate-180 text-[14px]"></i></button>
+                    </div>
+                </div>
+
+                <!-- this section img  -->
+                <div class="w-[36%]">
+                    <img class="w-full" src="./img/3daysmounyback.png" alt="">
+                </div>
+            </div>
         </section>
     </header>
 
     <main>
-        <div class=" h-screen"></div>
+        <!-- bottom of banner  -->
+        <div class="bg-[#020f24] text-[#FFFFFF] border-t border-[#00005e]">
+            <div class="w-[75%] flex items-center justify-center gap-10 py-10  mx-auto">
+                <div class="flex items-center gap-10">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-bolt text-lg text-[#777777]"></i>
+                        <p class="text-lg">Lightning-Fast Servers</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                       <i class="fa-solid fa-shield-halved text-lg text-[#777777]"></i>
+                        <p class="text-lg">Robust DDoS Protection</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-gauge-high text-lg text-[#777777]"></i>
+                        <p class="text-lg">Real-Time Performance Insights</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-10">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-rocket text-lg text-[#777777]"></i>
+                        <p class="text-lg">Easy Setup</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-group-arrows-rotate text-lg text-[#777777]"></i>
+                        <p class="text-lg">Effortless Scalability</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-gamepad text-lg text-[#777777]"></i>
+                        <p class="text-lg">Game-Focused Tools</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 <script>
