@@ -25,10 +25,89 @@
         html {
             scroll-behavior: smooth;
         }
+
+
+        /* from Giminy  */
+        .card {
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            border-top: 4px solid #00c9a7; 
+            /* border: 1px solid red; */
+        }
+
+
+        .location-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 0;
+            gap: 1rem;
+            /* border-bottom: 1px solid #2c3038; */
+            font-size: 15px;
+        }
+
+        .card .flag {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .card .ping-value {
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+        /* পিং কালার কোড */
+        .card .ping-green {
+            color: #00c9a7;
+            text-shadow: 0 0 10px rgba(0, 201, 167, 0.4);
+        }
+
+        .card .ping-yellow {
+            color: #f1c40f;
+            text-shadow: 0 0 10px rgba(241, 196, 15, 0.4);
+        }
+
+        .card .ping-red {
+            color: #e74c3c;
+            text-shadow: 0 0 10px rgba(231, 76, 60, 0.4);
+        }
+
+        .card .ping-loading {
+            color: #8b9bb4;
+        }
+
+        .card .ping-btn {
+            background: linear-gradient(90deg, #2c3038 0%, #3a404d 100%);
+            color: white;
+            border: 1px solid #3e4451;
+            padding: 5px 7px;
+            border-radius: 6px;
+            cursor: pointer;
+            /* margin-top: 25px; */
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .card .ping-btn:hover {
+            background: linear-gradient(90deg, #3e4451 0%, #4b5563 100%);
+            transform: translateY(-2px);
+        }
+
+        .card .ping-btn:active {
+            transform: translateY(0);
+        }
+
+        .card .ping-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
 <body>
+    <!-- color : 109682 -->
     <header class=" h-screen w-screen relative">
         <!-- background img  -->
         <div class="absolute inset-0 bg-[url(../img/herobanner.jpg)] bg-no-repeat bg-cover bg-center"></div>
@@ -39,14 +118,14 @@
 
 
         <nav id="navbar" class=" fixed z-50 w-full  ">
-            <div class="w-[75%] flex items-center justify-between mx-auto h-25  ">
+            <div class=" w-[90%] md:w-[75%] flex items-center justify-between mx-auto h-20 md:h-25  ">
                 <!-- nav logo -->
                 <div class="flex items-center gap-10">
-                    <div class="w-45 ">
+                    <div class="w-25 md:w-45 ">
                         <a href="#"><img class="w-full" src="./img/header-logo.png" alt=""></a>
                     </div>
 
-                    <ul class=" flex items-center gap-2.5 text-[#FFFFFF]">
+                    <ul class=" hidden md:flex items-center gap-2.5 text-[#FFFFFF]">
                         <li class="py-5 px-6 font-semibold"><a href="#">Minecraft Hosting</a></li>
                         <li onclick="toggleOption(event)"
                             class="py-5 px-6 font-semibold flex items-center gap-2 cursor-pointer relative">
@@ -103,7 +182,7 @@
                 </div>
 
                 <!-- btn grp -->
-                <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-4 ">
                     <button
                         class="text-[16px] text-[#FFFFFF] hover:bg-[#051e47] font-semibold cursor-pointer py-3 px-2 rounded-[6px]">CLIENT
                         AREA</button>
@@ -111,6 +190,11 @@
                         class="text-[16px] bg-gradient-to-tr from-cyan-800 hover:from-cyan-900 to-cyan-400   hover:to-cyan-600 cursor-pointer to-cyan-400  text-[#FFFFFF] font-semibold py-3 px-2 rounded-md">CONTROL
                         PANEL</button>
                 </div>
+
+                <!-- menu  -->
+                 <div class="p-3 md:hidden hover:bg-[#051e47] cursor-pointer rounded-xl ">
+                    <i class="fa-solid fa-bars"></i>
+                 </div>
             </div>
         </nav>
 
@@ -118,15 +202,15 @@
 
         <!-- banner section  -->
         <section class="h-screen z-40 relative flex items-center">
-            <div class="w-[75%] mx-auto text-[#FFFFFF] flex items-center justify-between">
+            <div class="w-[90%] mx-auto text-[#FFFFFF] flex items-center justify-between">
                 <!-- this section text  -->
-                <div class="w-[50%] space-y-4">
-                    <div class="space-y-10">
-                        <h1 class="text-7xl font-extrabold">Minecraft Server Hosting & More</h1>
-                        <p class="text-[#777777] text-[20pxba]">Host your Minecraft, Terraria, or Factorio server with
+                <div class="w-[95%] md:w-[50%] space-y-4">
+                    <div class="space-y-4 md:space-y-10">
+                        <h1 class="text-3xl md:text-7xl font-extrabold">Minecraft Server Hosting & More</h1>
+                        <p class="text-[#777777] text-[16px] md:text-[20px]">Host your Minecraft, Terraria, or Factorio server with
                             powerful AMD Ryzen 9 processors and DDoS
                             protection. Enjoy unmetered players and instant setup starting from just €6/month.</p>
-                        <div class="flex items-center gap-4">
+                        <div class="flex flex-col md:flex-row  md:items-center gap-4">
                             <button
                                 class="text-[16px] bg-[#109682] hover:bg-[#11a892] text-[#FFFFFF] font-semibold cursor-pointer py-2.5 px-2 rounded-sm">Start
                                 Your Server Now <i class="fa-solid fa-angle-left rotate-180 text-[14px]"></i></button>
@@ -138,11 +222,11 @@
                                     class="fa-solid fa-angle-left rotate-180 text-[14px]"></i></button>
                         </div>
                     </div>
-                    <p>No commitment • <a class="hover:text-[#109682]" href="#">Try risk-free for 3 days</a></p>
+                    <p class="text-[14px] md:text-[16px]">No commitment • <a class="hover:text-[#109682]" href="#">Try risk-free for 3 days</a></p>
                 </div>
 
                 <!-- this section img  -->
-                <div class="w-[36%]">
+                <div class="w-[36%] hidden md:flex">
                     <img class="w-full" src="./img/3daysmounyback.png" alt="">
                 </div>
             </div>
@@ -152,33 +236,33 @@
     <main>
         <!-- bottom of banner  -->
         <div class="bg-[#1d2329] text-[#FFFFFF] border-t border-[#00005e]">
-            <div class="w-[75%] flex items-center justify-center gap-10 py-10  mx-auto">
-                <div class="flex items-center gap-10">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-bolt text-lg text-[#777777]"></i>
-                        <p class="text-lg">Lightning-Fast Servers</p>
+            <div class="w-[90%] md:w-[75%] flex items-center md:justify-center flex-col md:flex-row gap-3 md:gap-10 py-7  md:py-10 mx-auto">
+                <div class="flex items-center gap-3 md:gap-10">
+                    <div class="flex items-center gap-1.5 md:gap-2">
+                        <i class="fa-solid fa-bolt text-[10px] md:text-lg text-[#777777]"></i>
+                        <p class="text-[10px] md:text-lg">Lightning-Fast Servers</p>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-shield-halved text-lg text-[#777777]"></i>
-                        <p class="text-lg">Robust DDoS Protection</p>
+                    <div class="flex items-center gap-1.5 md:gap-2">
+                        <i class="fa-solid fa-shield-halved text-[10px] md:text-lg text-[#777777]"></i>
+                        <p class="text-[10px] md:text-lg">Robust DDoS Protection</p>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-gauge-high text-lg text-[#777777]"></i>
-                        <p class="text-lg">Real-Time Performance Insights</p>
+                    <div class="flex items-center gap-1.5 md:gap-2">
+                        <i class="fa-solid fa-gauge-high text-[10px] md:text-lg text-[#777777]"></i>
+                        <p class="text-[10px] md:text-lg">Real-Time Performance Insights</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-10">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-rocket text-lg text-[#777777]"></i>
-                        <p class="text-lg">Easy Setup</p>
+                <div class="flex items-center gap-3 md:gap-10">
+                    <div class="flex items-center gap-1.5 md:gap-2">
+                        <i class="fa-solid fa-rocket text-[10px] md:text-lg text-[#777777]"></i>
+                        <p class="text-[10px] md:text-lg">Easy Setup</p>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-group-arrows-rotate text-lg text-[#777777]"></i>
-                        <p class="text-lg">Effortless Scalability</p>
+                    <div class="flex items-center gap-1.5 md:gap-2">
+                        <i class="fa-solid fa-group-arrows-rotate text-[10px] md:text-lg text-[#777777]"></i>
+                        <p class="text-[10px] md:text-lg">Effortless Scalability</p>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-gamepad text-lg text-[#777777]"></i>
-                        <p class="text-lg">Game-Focused Tools</p>
+                    <div class="flex items-center gap-1.5 md:gap-2">
+                        <i class="fa-solid fa-gamepad text-[10px] md:text-lg text-[#777777]"></i>
+                        <p class="text-[10px] md:text-lg">Game-Focused Tools</p>
                     </div>
                 </div>
             </div>
@@ -186,18 +270,19 @@
 
 
         <!-- featured section  -->
-        <section class="bg-[#151a1f] text-[#FFFFFF] py-30">
+        <section class="bg-[#151a1f] text-[#FFFFFF] py-20 md:py-30">
             <!-- section container -->
             <div class="mx-auto flex flex-col items-center">
                 <!-- this section text  -->
                 <div class="text-center space-y-3">
-                    <h2 class=" font-semibold text-[#109682] text-3xl">OUR FEATURED GAMES</h2>
-                    <h1 class=" font-extrabold text-6xl">Explore Our Most Popular Game Servers</h1>
-                    <p class=" text-2xl text-[#777777]">From sandbox building to open-world adventures, deploy high-performance servers for Minecraft, Palworld, GTA, and more instantly.</p>
+                    <h2 class=" font-semibold text-[#109682] text-xl md:text-3xl">OUR FEATURED GAMES</h2>
+                    <h1 class=" font-extrabold text-4xl md:text-6xl">Explore Our Most Popular Game Servers</h1>
+                    <p class=" text-lg md:text-2xl text-[#777777]">From sandbox building to open-world adventures, deploy
+                        high-performance servers for Minecraft, Palworld, GTA, and more instantly.</p>
                 </div>
 
                 <!-- flex Or grid Choose on developer -->
-                <div class="grid grid-cols-4 w-[60%] gap-8 mt-15">
+                <div class="grid grid-cols-1 md:grid-cols-4 w-[85%] md:w-[60%] gap-8 mt-12 md:mt-15">
                     <!-- item box 1-->
                     <a href="#">
                         <div class=" group  flex items-center justify-center rounded-xl relative ">
@@ -266,84 +351,181 @@
 
 
         <!-- we support -->
-        <section class="bg-[#151a1f] text-[#FFFFFF] py-30 ">
-            <div class=" mx-auto flex flex-col items-center gap-10">
+        <section class="bg-[#151a1f] text-[#FFFFFF] py-20 md:py-30 ">
+            <div class=" mx-auto flex flex-col items-center gap-7 md:gap-10">
                 <!-- this section text  -->
-                <div class="text-center space-y-3">
-                    <h2 class=" font-semibold text-[#109682] text-3xl">Supported Minecraft Server Types</h2>
-                    <h1 class=" font-extrabold text-6xl">We Support All Major Versions & Server Types</h1>
-                    <p class=" text-2xl text-[#777777]">Switch between Paper, Forge, NeoForge, Bedrock, and even Geyser (+ many more!) with just a few
+                <div class="text-center space-y-3 w-[95%]">
+                    <h2 class=" font-semibold text-[#109682] text-xl md:text-3xl">Supported Minecraft Server Types</h2>
+                    <h1 class=" font-extrabold text-3xl md:text-6xl">We Support All Major Versions & Server Types</h1>
+                    <p class=" text-lg md:text-2xl text-[#777777]">Switch between Paper, Forge, NeoForge, Bedrock, and even Geyser
+                        (+ many more!) with just a few
                         clicks.</p>
                 </div>
 
                 <!-- this section items  -->
-                 <div class=" grid grid-cols-4 gap-5 w-[60%]">
+                <div class=" grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-5 w-[90%] md:w-[60%]">
                     <!-- item 1 -->
-                     <div class=" flex flex-col items-center  gap-3 rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-[#109682]/30 border border-[#777777] hover:border-[#109682]">
+                    <div
+                        class=" flex flex-col items-center  gap-3 rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-[#109682]/30 border border-[#777777] hover:border-[#109682]">
                         <!-- img  -->
-                         <div class=" w-[50px]">
+                        <div class=" w-[50px]">
                             <img class=" w-full" src="./img/dart.png" alt="">
-                         </div>
-                         <p class=" text-xl ">Vanilla</p>
-                     </div>
+                        </div>
+                        <p class=" text-xl ">Vanilla</p>
+                    </div>
                     <!-- item 2 -->
-                     <div class=" flex flex-col items-center  gap-3 border rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-white/30 border border-[#777777] hover:border-white/30 ">
+                    <div
+                        class=" flex flex-col items-center  gap-3 border rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-white/30 border border-[#777777] hover:border-white/30 ">
                         <!-- img  -->
-                         <div class=" w-[50px]">
+                        <div class=" w-[50px]">
                             <img class=" w-full" src="./img/paper-plan.png" alt="">
-                         </div>
-                         <p class="text-xl ">Paper</p>
-                     </div>
+                        </div>
+                        <p class="text-xl ">Paper</p>
+                    </div>
                     <!-- item 3 -->
-                     <div class=" flex flex-col items-center  gap-3 border rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-white/30 border border-[#777777] hover:border-white/30">
+                    <div
+                        class=" flex flex-col items-center  gap-3 border rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-white/30 border border-[#777777] hover:border-white/30">
                         <!-- img  -->
-                         <div class=" w-[50px]">
+                        <div class=" w-[50px]">
                             <img class=" w-full" src="./img/fabric.png" alt="">
-                         </div>
-                         <p class=" text-xl ">Fabric</p>
-                     </div>
+                        </div>
+                        <p class=" text-xl ">Fabric</p>
+                    </div>
                     <!-- item 4 -->
-                     <div class=" flex flex-col items-center  gap-3 rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-orange-500/30 border border-[#777777] hover:border-orange-500/30 ">
+                    <div
+                        class=" flex flex-col items-center  gap-3 rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-orange-500/30 border border-[#777777] hover:border-orange-500/30 ">
                         <!-- img  -->
-                         <div class=" w-[50px]  bg-white rounded-full p-2">
+                        <div class=" w-[50px]  bg-white rounded-full p-2">
                             <img class=" w-full" src="./img/forge.png" alt="">
-                         </div>
-                         <p class=" text-xl ">Forge</p>
-                     </div>
+                        </div>
+                        <p class=" text-xl ">Forge</p>
+                    </div>
                     <!-- item 5 -->
-                     <div class=" flex flex-col items-center  gap-3  rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-orange-500/30 border border-[#777777] hover:border-orange-500/30 ">
+                    <div
+                        class=" flex flex-col items-center  gap-3  rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-orange-500/30 border border-[#777777] hover:border-orange-500/30 ">
                         <!-- img  -->
-                         <div class=" w-[50px]">
+                        <div class=" w-[50px]">
                             <img class=" w-full" src="./img/neoforge.png" alt="">
-                         </div>
-                         <p class="text-xl ">NeoForge</p>
-                     </div>
+                        </div>
+                        <p class="text-xl ">NeoForge</p>
+                    </div>
                     <!-- item 6 -->
-                     <div class=" flex flex-col items-center  gap-3 rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-white/30 border border-[#777777] hover:border-white/30">
+                    <div
+                        class=" flex flex-col items-center  gap-3 rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-white/30 border border-[#777777] hover:border-white/30">
                         <!-- img  -->
-                         <div class=" w-[50px]">
+                        <div class=" w-[50px]">
                             <img class=" w-full" src="./img/bedrock.png" alt="">
-                         </div>
-                         <p class="text-xl ">Bedrock</p>
-                     </div>
+                        </div>
+                        <p class="text-xl ">Bedrock</p>
+                    </div>
                     <!-- item 7 -->
-                     <div class=" flex flex-col items-center  gap-3 rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-[#109682]/30 border border-[#777777] hover:border-[#109682]">
+                    <div
+                        class=" flex flex-col items-center  gap-3 rounded-xl bg-[#1b2229] py-7 hover:bg-linear-to-tr hover:from-transparent hover:to-[#109682]/30 border border-[#777777] hover:border-[#109682]">
                         <!-- img  -->
-                         <div class=" w-[50px]">
+                        <div class=" w-[50px]">
                             <img class=" w-full" src="./img/gisar.png" alt="">
-                         </div>
-                         <p class="text-xl ">Geyser</p>
-                     </div>
+                        </div>
+                        <p class="text-xl ">Geyser</p>
+                    </div>
                     <!-- item 8 -->
-                     <div class=" flex flex-col items-center  gap-3 border border-[#777777] rounded-xl bg-[#1b2229] py-7">
+                    <div
+                        class=" flex flex-col items-center  gap-3 border border-[#777777] rounded-xl bg-[#1b2229] py-7">
                         <!-- img  -->
-                         <div class=" w-[50px]  bg-white rounded-full p-2">
+                        <div class=" w-[50px]  bg-white rounded-full p-2">
                             <img class=" w-full" src="./img/leyar-removebg-preview.png" alt="">
-                         </div>
-                         <p class="text-xl ">And many more!</p>
-                     </div>
+                        </div>
+                        <p class="text-xl ">And many more!</p>
+                    </div>
 
-                 </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Control Panel -->
+        <section class="bg-[#151a1f] text-[#FFFFFF] py-30 ">
+            <div class="w-[75%] mx-auto flex flex-col items-center gap-10">
+                <!-- this section text  -->
+                <div class="text-center space-y-3">
+                    <h2 class=" font-semibold text-[#109682] text-3xl">Control Panel</h2>
+                    <h1 class=" font-extrabold text-6xl">Manage Your Server Like a Pro</h1>
+                    <p class=" text-2xl text-[#777777]">Our panel is continually evolving and improving to provide you
+                        with the best experience possible.</p>
+                </div>
+
+                <!-- this section img  -->
+                <div
+                    class="w-full rounded-xl p-2 pt-4 border bg-linear-to-b from-transparent to-black/200 border-[#777777a1]">
+                    <img class="w-full rounded-xl" src="./img/Control-Panel.png" alt="">
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Borno Infrastructure -->
+        <section class="bg-[#151a1f] text-[#FFFFFF] py-30 ">
+            <div class="w-[75%] mx-auto flex flex-col items-center gap-15">
+                <!-- this section text  -->
+                <div class="text-center space-y-3">
+                    <h2 class=" font-semibold text-[#109682] text-3xl">Borno Infrastructure</h2>
+                    <h1 class=" font-extrabold text-6xl">Global Locations + Advanced DDoS Protection</h1>
+                    <p class=" text-2xl text-[#777777]">Launch a server nearest you with 3+Tbps DDoS protection for low
+                        ping and guaranteed uptime.</p>
+                </div>
+
+                <!-- map img  -->
+                <div class="w-full relative h-[700px]">
+                    <!-- bg map  -->
+                    <div class="w-full absolute inset-0 ">
+                        <img class="w-full" src="./img/map.png" alt="">
+                    </div>
+                </div>
+
+                <div class="w-full grid grid-cols-2 gap-10 items-center">
+                    <!-- for ping  -->
+                    <div class="">
+                        <div class="card">
+                            <div class="bg-[#1A1D21] px-5 space-y-5 py-5 pb-12">
+                                <h2 class=" text-5xl font-extrabold">Global Locations</h2>
+                                <p class="text-[#777777]">Experience the next level of gaming with our globally distributed data centers. We bring the action closer to you, ensuring ultra-low latency and a lag-free experience. Whether you're a pro or a casual player, top-tier gaming performance is now just a single click away.
+                                </p>
+                            </div>
+
+                            <div class=" flex items-end justify-between bg-[#212529] px-5 py-6 rounded-b-xl">
+                                <ul class="location-list " id="serverList">
+                                </ul>
+
+                                <button class="ping-btn" onclick="startPingTest()">Ping All Locations</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <!-- top  -->
+                        <div class="bg-[#1A1D21] px-5 py-7 rounded-t-xl">
+                            <h1 class=" font-extrabold text-5xl">Advanced DDoS Protection</h1>
+                            <p class="text-[#777777] w-[80%] mt-2">Our servers are protected against DDoS attacks at the
+                                network (L3), transport (L4), and application (L7) layers in data centers around the
+                                world.</p>
+                        </div>
+
+                        <!-- bottom  -->
+                        <div class="bg-[#212529] px-5 py-7 rounded-b-xl">
+                            <h1 class=" font-extrabold text-2xl">We protect your servers against all types of DDoS
+                                attacks</h1>
+                            <ul class="mt-2 space-y-1.5 text-[#777777]">
+                                <li><i class="fa-solid fa-check text-[#109682]"></i> Flood/volumetric attacks on network
+                                    interfaces</li>
+                                <li><i class="fa-solid fa-check text-[#109682]"></i> Flood/volumetric attacks on network
+                                    interfaces</li>
+                                <li><i class="fa-solid fa-check text-[#109682]"></i> Flood/volumetric attacks on network
+                                    interfaces</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
@@ -391,6 +573,118 @@
             navbar.classList.remove("bg-[#151a1f]");
         }
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ১. সঠিক সার্ভার এন্ডপয়েন্ট (AWS Region Specific)
+    // এই লিঙ্কগুলো গেম সার্ভার যে ডাটা সেন্টারে থাকে, ঠিক সেখানকার।
+    const locations = [
+        {
+            name: "Singapore",
+            flag: "🇸🇬",
+            // AWS Singapore (ap-southeast-1)
+            url: "https://dynamodb.ap-southeast-1.amazonaws.com"
+        },
+        {
+            name: "Mumbai",
+            flag: "🇮🇳",
+            // AWS Mumbai (ap-south-1)
+            url: "https://dynamodb.ap-south-1.amazonaws.com"
+        },
+        {
+            name: "Hyderabad",
+            flag: "🇮🇳",
+            // AWS Hyderabad (ap-south-2) - একদম নতুন রিজিয়ন
+            url: "https://dynamodb.ap-south-2.amazonaws.com"
+        }
+    ];
+
+    const listContainer = document.getElementById('serverList');
+
+    // UI রেন্ডার করা
+    function renderList() {
+        listContainer.innerHTML = '';
+        locations.forEach((loc, index) => {
+            const li = document.createElement('li');
+            li.className = 'location-item';
+            li.innerHTML = `
+                <div style="display: flex; align-items: center;">
+                    <span class="flag">${loc.flag}</span>
+                    <span>${loc.name}</span>
+                </div>
+                <span id="ping-${index}" class="ping-value ping-loading">-- ms</span>
+            `;
+            listContainer.appendChild(li);
+        });
+    }
+
+    // পিং চেক করার আসল মেথড
+    async function getPing(url) {
+        // ব্রাউজার ক্যাশ যাতে না ধরে তাই টাইমস্ট্যাম্প যোগ করা হলো
+        const cacheBuster = `?t=${new Date().getTime()}`;
+        const targetUrl = url + cacheBuster;
+
+        const startTime = performance.now();
+
+        try {
+            // 'no-cors' মোড ব্যবহার করছি, এতে ব্রাউজার আটকাবে না
+            // এবং 'cache: no-store' দিচ্ছি যাতে প্রতিবার নতুন রিকোয়েস্ট যায়
+            await fetch(targetUrl, { mode: 'no-cors', cache: 'no-store', method: 'HEAD' });
+
+            const endTime = performance.now();
+            return Math.floor(endTime - startTime);
+        } catch (e) {
+            return -1; // ফেইল হলে
+        }
+    }
+
+    async function startPingTest() {
+        const btn = document.querySelector('.ping-btn');
+        btn.innerHTML = "Pinging Servers...";
+        btn.disabled = true;
+
+        for (let i = 0; i < locations.length; i++) {
+            const span = document.getElementById(`ping-${i}`);
+            span.innerText = "Checking...";
+            span.className = "ping-value ping-loading";
+
+            // পিং মাপা হচ্ছে
+            const ms = await getPing(locations[i].url);
+
+            // কালার সেট করা
+            if (ms === -1) {
+                span.innerText = "Timeout";
+                span.className = "ping-value ping-red";
+            } else {
+                span.innerText = `${ms} ms`;
+
+                // গেমিং পিং কালার লজিক
+                if (ms < 60) {
+                    span.className = "ping-value ping-green"; // এক্সিলেন্ট
+                } else if (ms < 120) {
+                    span.className = "ping-value ping-yellow"; // মোটামুটি
+                } else {
+                    span.className = "ping-value ping-red"; // খারাপ
+                }
+            }
+        }
+
+        btn.innerHTML = "Ping All Locations";
+        btn.disabled = false;
+    }
+
+    renderList();
 </script>
 
 </html>

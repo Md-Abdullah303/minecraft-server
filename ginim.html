@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Ping Tester</title>
+    <style>
+        /* ডিজাইন আগের মতোই রাখা হয়েছে */
+        body {
+            background-color: #1a1b26;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background-color: #16181c;
+            padding: 30px;
+            border-radius: 12px;
+            width: 380px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border-top: 4px solid #00c9a7;
+        }
+
+        h2 { margin-top: 0; font-size: 22px; }
+        p { color: #8b9bb4; font-size: 13px; margin-bottom: 25px; line-height: 1.5; }
+
+        .location-list { list-style: none; padding: 0; }
+
+        .location-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #2c3038;
+            font-size: 15px;
+        }
+        
+        .location-item:last-child { border-bottom: none; }
+
+        .flag { margin-right: 12px; font-size: 18px; }
+        
+        .ping-value { font-weight: bold; font-family: monospace; font-size: 16px; }
+        
+        /* পিং কালার কোড */
+        .ping-green { color: #00c9a7; text-shadow: 0 0 10px rgba(0, 201, 167, 0.4); }
+        .ping-yellow { color: #f1c40f; text-shadow: 0 0 10px rgba(241, 196, 15, 0.4); }
+        .ping-red { color: #e74c3c; text-shadow: 0 0 10px rgba(231, 76, 60, 0.4); }
+        .ping-loading { color: #8b9bb4; }
+
+        .ping-btn {
+            background: linear-gradient(90deg, #2c3038 0%, #3a404d 100%);
+            color: white;
+            border: 1px solid #3e4451;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .ping-btn:hover { 
+            background: linear-gradient(90deg, #3e4451 0%, #4b5563 100%);
+            transform: translateY(-2px);
+        }
+        
+        .ping-btn:active { transform: translateY(0); }
+        .ping-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Server Latency</h2>
+    <p>Checking connection with official AWS & Cloudflare endpoints for accurate gaming ping.</p>
+
+    <ul class="location-list" id="serverList">
+        </ul>
+
+    <button class="ping-btn" onclick="startPingTest()">Ping All Locations</button>
+</div>
+
+<script>
+    // ১. সঠিক সার্ভার এন্ডপয়েন্ট (AWS Region Specific)
+    // এই লিঙ্কগুলো গেম সার্ভার যে ডাটা সেন্টারে থাকে, ঠিক সেখানকার।
+    const locations = [
+        { 
+            name: "Singapore", 
+            flag: "🇸🇬", 
+            // AWS Singapore (ap-southeast-1)
+            url: "https://dynamodb.ap-southeast-1.amazonaws.com" 
+        },
+        { 
+            name: "Mumbai", 
+            flag: "🇮🇳", 
+            // AWS Mumbai (ap-south-1)
+            url: "https://dynamodb.ap-south-1.amazonaws.com" 
+        },
+        { 
+            name: "Hyderabad", 
+            flag: "🇮🇳", 
+            // AWS Hyderabad (ap-south-2) - একদম নতুন রিজিয়ন
+            url: "https://dynamodb.ap-south-2.amazonaws.com" 
+        }
+    ];
+
+    const listContainer = document.getElementById('serverList');
+
+    // UI রেন্ডার করা
+    function renderList() {
+        listContainer.innerHTML = '';
+        locations.forEach((loc, index) => {
+            const li = document.createElement('li');
+            li.className = 'location-item';
+            li.innerHTML = `
+                <div style="display: flex; align-items: center;">
+                    <span class="flag">${loc.flag}</span>
+                    <span>${loc.name}</span>
+                </div>
+                <span id="ping-${index}" class="ping-value ping-loading">-- ms</span>
+            `;
+            listContainer.appendChild(li);
+        });
+    }
+
+    // পিং চেক করার আসল মেথড
+    async function getPing(url) {
+        // ব্রাউজার ক্যাশ যাতে না ধরে তাই টাইমস্ট্যাম্প যোগ করা হলো
+        const cacheBuster = `?t=${new Date().getTime()}`;
+        const targetUrl = url + cacheBuster;
+        
+        const startTime = performance.now();
+        
+        try {
+            // 'no-cors' মোড ব্যবহার করছি, এতে ব্রাউজার আটকাবে না
+            // এবং 'cache: no-store' দিচ্ছি যাতে প্রতিবার নতুন রিকোয়েস্ট যায়
+            await fetch(targetUrl, { mode: 'no-cors', cache: 'no-store', method: 'HEAD' });
+            
+            const endTime = performance.now();
+            return Math.floor(endTime - startTime);
+        } catch (e) {
+            return -1; // ফেইল হলে
+        }
+    }
+
+    async function startPingTest() {
+        const btn = document.querySelector('.ping-btn');
+        btn.innerHTML = "Pinging Servers...";
+        btn.disabled = true;
+
+        for (let i = 0; i < locations.length; i++) {
+            const span = document.getElementById(`ping-${i}`);
+            span.innerText = "Checking...";
+            span.className = "ping-value ping-loading";
+
+            // পিং মাপা হচ্ছে
+            const ms = await getPing(locations[i].url);
+
+            // কালার সেট করা
+            if (ms === -1) {
+                span.innerText = "Timeout";
+                span.className = "ping-value ping-red";
+            } else {
+                span.innerText = `${ms} ms`;
+                
+                // গেমিং পিং কালার লজিক
+                if (ms < 60) {
+                    span.className = "ping-value ping-green"; // এক্সিলেন্ট
+                } else if (ms < 120) {
+                    span.className = "ping-value ping-yellow"; // মোটামুটি
+                } else {
+                    span.className = "ping-value ping-red"; // খারাপ
+                }
+            }
+        }
+
+        btn.innerHTML = "Ping All Locations";
+        btn.disabled = false;
+    }
+
+    renderList();
+
+</script>
+
+</body>
+</html>
